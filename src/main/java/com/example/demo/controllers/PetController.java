@@ -33,7 +33,7 @@ public class PetController {
 
     @GetMapping("/show")
     @ResponseBody
-    public List<Pet> showAllPet(){
+    public List<Pet> showAllPet() {
         List<Pet> pets = new ArrayList<>();
         List<Owner> ownerList = new ArrayList<>();
         ownerService.findAll().forEach(ownerList::add);
@@ -62,7 +62,7 @@ public class PetController {
         webDataBinder.setDisallowedFields("id");
     }
 
-    @RequestMapping("pets/new")
+    @RequestMapping("/pets/new")
     public String initCreationForm(Owner owner, Model model) {
         Pet pet = new Pet();
         owner.getPets().add(pet);
@@ -74,15 +74,15 @@ public class PetController {
     @PostMapping("/pets/new")
     public String processCreationForm(Owner owner, Pet pet,
                                       BindingResult result, Model model) {
-        if (pet.getName().equalsIgnoreCase("")){
+        if (pet.getName().equalsIgnoreCase("")) {
             pet.setOwner(owner);
-            result.rejectValue("name","fillinformation");
+            result.rejectValue("name", "fillinformation");
         }
-        if (pet.getBirthDate() == null){
+        if (pet.getBirthDate() == null) {
             pet.setOwner(owner);
-            result.rejectValue("birthDate","fillinformation");
+            result.rejectValue("birthDate", "fillinformation");
         }
-        if ( pet.isNew() && owner.getPet(pet.getName()) != null){
+        if (pet.isNew() && owner.getPet(pet.getName()) != null) {
             pet.setOwner(owner);
             result.rejectValue("name", "duplicate", "already exist");
         }
@@ -106,22 +106,21 @@ public class PetController {
 
     @PostMapping("/pets/{petId}/edit")
     public String processEditForm(Pet pet, BindingResult bindingResult,
-                                  Owner owner, Model model, @PathVariable Long petId){
-        if (pet.getName().equalsIgnoreCase("")){
+                                  Owner owner, Model model, @PathVariable Long petId) {
+        if (pet.getName().equalsIgnoreCase("")) {
             System.out.println("No pet name provided");
             pet.setOwner(owner);
-            bindingResult.rejectValue("name","fillinformation");
+            bindingResult.rejectValue("name", "fillinformation");
         }
-        if (pet.getBirthDate() == null){
+        if (pet.getBirthDate() == null) {
             pet.setOwner(owner);
-            bindingResult.rejectValue("birthDate","fillinformation");
+            bindingResult.rejectValue("birthDate", "fillinformation");
         }
-        if (bindingResult.hasErrors()){
+        if (bindingResult.hasErrors()) {
             pet.setOwner(owner);
             model.addAttribute("pet", pet);
             return VIEW_PET_CREATE_OR_UPDATE_FORM;
-        }
-        else {
+        } else {
             Pet oldPet = petService.findById(petId);
             oldPet.setName(pet.getName());
             oldPet.setPetType(pet.getPetType());

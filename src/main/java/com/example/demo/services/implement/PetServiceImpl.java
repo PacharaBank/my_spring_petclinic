@@ -3,6 +3,7 @@ package com.example.demo.services.implement;
 import com.example.demo.models.Pet;
 import com.example.demo.repositories.PetRepo;
 import com.example.demo.services.PetService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;

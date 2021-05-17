@@ -26,7 +26,6 @@ public class Owner extends Person{
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "owner")
     private List<Pet> pets = new ArrayList<>();
 
-
     public Pet getPet(String name){
         for (Pet pet : pets){
             if (!pet.isNew()){
