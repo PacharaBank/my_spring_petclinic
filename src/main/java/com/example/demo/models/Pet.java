@@ -32,14 +32,14 @@ public class Pet extends BaseEntity{
     @JoinColumn(name = "type_id")
     private PetType petType;
 
-    @Override
-    public String toString() {
-        return "Pet{" +
-                "name='" + name + '\'' +
-                ", birthDate=" + birthDate +
-                ", visitList=" + visitList +
-                ", owner=" + owner +
-                ", petType=" + petType +
-                '}';
-    }
+//    @Override
+//    public String toString() {
+//        return "Pet{" +
+//                "name='" + name + '\'' +
+//                ", birthDate=" + birthDate +
+//                ", visitList=" + visitList +
+//                ", owner=" + owner +
+//                ", petType=" + petType +
+//                '}';
+//    }
 }

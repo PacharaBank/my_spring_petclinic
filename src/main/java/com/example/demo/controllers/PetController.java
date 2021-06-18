@@ -31,21 +31,21 @@ public class PetController {
         this.ownerService = ownerService;
     }
 
-    @GetMapping("/show")
-    @ResponseBody
-    public List<Pet> showAllPet() {
-        List<Pet> pets = new ArrayList<>();
-        List<Owner> ownerList = new ArrayList<>();
-        ownerService.findAll().forEach(ownerList::add);
-        for (int i = 0; i < ownerList.size(); i++) {
-            int amountOfPet = ownerList.get(i).getPets().size();
-            for (int j = 0; j < amountOfPet; j++) {
-                pets.add(ownerList.get(i).getPets().get(j));
-            }
-        }
-        System.out.println(pets);
-        return pets;
-    }
+//    @GetMapping("/show")
+//    @ResponseBody
+//    public List<Pet> showAllPet() {
+//        List<Pet> pets = new ArrayList<>();
+//        List<Owner> ownerList = new ArrayList<>(ownerService.findAll());
+//        for (int i = 0; i < ownerList.size(); i++) {
+//            Owner owner = ownerList.get(i);
+//            int amountOfPet = owner.getPets().size();
+//            for (int j = 0; j < amountOfPet; j++) {
+//                pets.add(owner.getPets().get(j));
+//            }
+//        }
+//        System.out.println(pets);
+//        return pets;
+//    }
 
     @ModelAttribute("types")
     public List<PetType> populatePetType() {
